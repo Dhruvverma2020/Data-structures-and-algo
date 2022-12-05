@@ -1,0 +1,72 @@
+ //{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+class Solution {
+  public:
+    // Function to detect cycle in a directed graph.
+    bool dfsrec(vector<int>adj[],int s,vector<bool>&visited,vector<bool>&rst)
+    {
+        rst[s]=true;
+        visited[s]=true;
+        for(int x:adj[s])
+        {
+            if(visited[x]==false)
+            {
+                if(dfsrec(adj,x,visited,rst)==true)
+                    return true;
+            }
+            else if(rst[x]==true)
+            {
+                return true;
+            }
+        }
+        rst[s]=false;
+        return false;
+    }
+    bool isCyclic(int v, vector<int> adj[]) 
+    {
+        // code here
+        vector<bool>visited(v,false);
+        vector<bool>rst(v,false);
+        for(int i=0;i<v;i++)
+        {
+            if(visited[i]==false)
+            {
+                if(dfsrec(adj,i,visited,rst)==true)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
+
+//{ Driver Code Starts.
+
+int main() {
+
+    int t;
+    cin >> t;
+    while (t--) {
+        int V, E;
+        cin >> V >> E;
+
+        vector<int> adj[V];
+
+        for (int i = 0; i < E; i++) {
+            int u, v;
+            cin >> u >> v;
+            adj[u].push_back(v);
+        }
+
+        Solution obj;
+        cout << obj.isCyclic(V, adj) << "\n";
+    }
+
+    return 0;
+}
+
+// } Driver Code Ends
