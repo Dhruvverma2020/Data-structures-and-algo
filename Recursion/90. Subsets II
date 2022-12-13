@@ -6,7 +6,7 @@ public:
             ans.push_back(output);
         for(int i=idx;i<n;i++)
         {
-            if(i!=idx&&nums[i-1]==nums[i])
+            if(i!=idx&&nums[i-1]==nums[i]) //this is the unpick function
             continue;
             output.push_back(nums[i]);
             solve(i+1,n,output,ans,nums);
