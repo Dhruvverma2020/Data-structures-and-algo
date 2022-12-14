@@ -1,0 +1,59 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+class Solution{
+    public:
+    bool solve(int idx,vector<int>&nums,int sum,int k)
+    {
+        if(idx==nums.size())
+        {
+            if(sum==k)
+            {
+                return true;
+            }
+            return false;
+        }
+        if(sum>k)
+        {
+            return false;
+        }
+        if(solve(idx+1,nums,sum+nums[idx],k))
+        {
+            return true;
+        }
+        return solve(idx+1,nums,sum,k);
+        
+    }
+    bool checkSubsequenceSum(int n, vector<int>& nums, int k) 
+    {
+        // Code here
+
+      int idx=0;
+      int sum=0;
+      solve(idx,nums,sum,k);
+    }
+};
+
+//{ Driver Code Starts.
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--){
+        int n,k; cin>>n>>k;
+        vector<int> arr;
+        
+        for(int i=0; i<n; ++i){
+            int x; cin>>x;
+            arr.push_back(x);
+        }
+        
+        Solution obj;
+        bool ans = obj.checkSubsequenceSum(n, arr, k);
+        cout<<( ans ? "Yes" : "No")<<"\n";
+    }
+    return 0;
+}
+// } Driver Code Ends
