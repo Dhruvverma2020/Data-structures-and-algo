@@ -1,0 +1,25 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+void rev(int arr[],int n,int l,int r)
+{
+    while(l<=r)
+    {
+        swap(arr[l],arr[r]);
+        l++;
+        r--;
+    }
+}
+int main()
+{
+    int arr[]={22,33,44,55,66};
+    int n=5;
+    int l=0;
+    int r=4;
+    rev(arr,n,l,r);
+    for(int i=0;i<n;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    return 0;
+}
