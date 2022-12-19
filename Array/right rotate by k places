@@ -1,0 +1,23 @@
+LOGIC IS SAME AS LEFT ROTATE BUT JUST USE M=N-(K%N) IN PLACE OF K=K%N;
+
+class Solution {
+public:
+    void rotate(vector<int>& arr, int k) 
+    {
+       int n=arr.size();
+       int m=n-(k%n);
+       int temp[n];
+	   for(int i=0;i<m;i++)
+	   {
+	       temp[i]=arr[i];
+	   }
+	   for(int i=m;i<n;i++)
+	   {
+	       arr[i-m]=arr[i];
+	   }
+	   for(int i=0;i<m;i++)
+	   {
+	       arr[n-m+i]=temp[i];
+	   }
+    }
+};
