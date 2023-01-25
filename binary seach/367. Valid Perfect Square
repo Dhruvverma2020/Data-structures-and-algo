@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isPerfectSquare(int n) 
+    {
+           long long int l=0;
+           long long int r=n;
+           while(l<=r)
+           {
+               long long int mid=(l+r)/2;
+               long long int msq=mid*mid;
+               if(msq==n)
+               {
+                   return true;
+               }
+               else if(msq>n)
+               {
+                r=mid-1;
+               }
+               else
+               {
+                   l=mid+1;
+               }
+           }
+           return false;
+    }
+};
