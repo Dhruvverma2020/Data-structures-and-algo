@@ -1,0 +1,12 @@
+node*insertatfirst(node*head,int x)
+{
+    node*temp=new node(x);
+    if(head==NULL)
+    {
+        return temp;
+    }
+    temp->next=head;
+    head->prev=temp;
+    head=temp;
+    return head;
+}
