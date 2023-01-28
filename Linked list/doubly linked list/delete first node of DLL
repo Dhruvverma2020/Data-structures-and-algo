@@ -1,0 +1,16 @@
+node*deletefirst(node*head)
+{
+    if(head==NULL)
+    {
+        return NULL;
+    }
+    if(head->next==NULL)
+    {
+        delete head;
+        return NULL;
+    }
+    node*temp=head->next;
+    delete head;
+    temp->prev=NULL;
+    return temp;
+}
