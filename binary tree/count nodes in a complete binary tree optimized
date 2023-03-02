@@ -1,0 +1,58 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    int getheightleft(TreeNode*root)
+    {
+        int height=0;
+        while(root!=NULL)
+        {
+            height++;
+            root=root->left;
+        }
+        return height;
+    }
+    int getheightright(TreeNode*root)
+    {
+        int height=0;
+        while(root!=NULL)
+        {
+            height++;
+            root=root->right;
+        }
+        return height;
+    }
+    int getheight(TreeNode*root)
+    {
+        if(root==NULL)
+        {
+            return 0;
+        }
+        return 1+max(getheight(root->left),getheight(root->right));
+    }
+    int countNodes(TreeNode* root) 
+    {
+        if(root==NULL)
+        {
+            return 0;
+        }
+        int lh=getheightleft(root);
+        int rh=getheightright(root);
+        if(lh==rh)
+        {
+            int h=getheight(root);
+            return pow(2,h)-1;
+        }
+        else
+        return 1+countNodes(root->left)+countNodes(root->right);
+    }
+};
