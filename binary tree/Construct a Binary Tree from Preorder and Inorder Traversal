@@ -1,0 +1,24 @@
+ TreeNode*build(vector<int>&preorder,int pstart,int pend,vector<int>&inorder,int instart,int inend,map<int,int>&mp)
+    {
+        if(pstart>pend||instart>inend)
+        {
+            return NULL;
+        }
+        TreeNode*root=new TreeNode(preorder[pstart]);
+        int inroot=mp[root->val];
+        int numsleft=inroot-instart;
+        root->left=build(preorder,pstart+1,pstart+numsleft,inorder,instart,inroot-1,mp);
+        root->right=build(preorder,pstart+numsleft+1,pend,inorder,inroot+1,inend,mp);
+        return root;
+
+    }
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) 
+    {
+        map<int,int>mp;
+        for(int i=0;i<inorder.size();i++)
+        {
+            mp[inorder[i]]=i;
+        }
+        TreeNode*root=build(preorder,0,preorder.size()-1,inorder,0,inorder.size()-1,mp);
+        return root;
+    }
