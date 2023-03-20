@@ -1,0 +1,70 @@
+//{ Driver Code Starts
+// Initial Template for C++
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+// User function Template for C++
+
+class Solution {
+  public:
+   void dfs(vector<vector<int>>& grid,int i,int j,string &path)
+   {
+      if(i<0||j<0||i>=grid.size()||j>=grid[0].size()||grid[i][j]==0){
+          return;
+      }
+      grid[i][j]=0;
+      path.push_back('d');
+      dfs(grid,i+1,j,path);
+      path.push_back('r');
+      dfs(grid,i,j+1,path);
+      path.push_back('u');
+      dfs(grid,i-1,j,path);
+      path.push_back('l');
+      dfs(grid,i,j-1,path);
+
+  }
+    int countDistinctIslands(vector<vector<int>>& grid) 
+    {
+        // code here
+        set<string> islands;
+      for(int i=0;i<grid.size();i++)
+      {
+          for(int j=0;j<grid[0].size();j++)
+          {
+              if(grid[i][j]==1){
+                  string psf = "s";
+                  dfs(grid,i,j,psf);
+                  if(psf.size()>0)
+                  {
+                      islands.insert(psf);
+                  }
+              }
+          }
+      }
+      return islands.size();
+    }
+};
+
+
+//{ Driver Code Starts.
+
+int main() {
+
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, m;
+        cin >> n >> m;
+        vector<vector<int>> grid(n, vector<int>(m));
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                cin >> grid[i][j];
+            }
+        }
+        Solution obj;
+        cout << obj.countDistinctIslands(grid) << endl;
+    }
+}
+// } Driver Code Ends
