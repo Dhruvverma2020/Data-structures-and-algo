@@ -1,0 +1,79 @@
+//{ Driver Code Starts
+// Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+// User function Template for C++
+class Solution {
+  public:
+    int minimumCost(vector<vector<int>>& flights, int n, int k) 
+    {
+        // code here
+        vector<vector<pair<int,int>>> adj(n+1);
+
+        for(int i=0;i<flights.size();i++)
+        {
+            int u = flights[i][0],v = flights[i][1], w = flights[i][2];
+            adj[u].push_back({v,w});
+        }
+        queue<pair<int,int>> que;
+        vector<int> dist(n+1,INT_MAX);
+        que.push({k,0});
+        dist[k]=0;
+        while(!que.empty())
+        {
+            int vert = que.front().first, weight = que.front().second;
+            que.pop();
+            for(auto x:adj[vert])
+            {
+                if(dist[x.first]>weight+x.second)
+                {
+                    dist[x.first]=weight+x.second;
+                    que.push({x.first,weight+x.second});
+                }
+            }
+        }
+        int ans = 0;
+        for(int i=1;i<=n;i++)
+        {
+            if(dist[i]!=INT_MAX)
+            {
+                ans = max(dist[i],ans);
+            }
+            else{
+                return -1;
+            }
+        }
+        return ans;
+    }
+};
+
+
+//{ Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, k;
+        cin >> n >> k;
+        int size;
+        cin >> size;
+        vector<vector<int>> flights(size,vector<int>(3));
+        for (int i = 0; i < size; i++) {
+            vector<int> temp;
+            for (int j = 0; j < 3; ++j) {
+                int x;
+                cin >> x;
+                temp.push_back(x);
+            }
+            flights[i]=temp;
+        }
+
+        Solution ob;
+        cout << ob.minimumCost(flights, n, k) << "\n";
+    }
+}
+
+// } Driver Code Ends
