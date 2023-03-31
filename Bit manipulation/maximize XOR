@@ -1,0 +1,25 @@
+int maximizingXor(int l, int r) 
+{
+    int max_xor=0;
+   for(int i=l;i<=r;i++)
+   {
+       for(int j=i;j<=r;j++)
+       {
+           int curr_xor=(i^j);
+           if(curr_xor>max_xor)
+           {
+               max_xor=curr_xor;
+           }
+       }
+   }
+   return max_xor;
+}
+/// in this question i have give the maximum value of XOR between 2 numbers that is
+if a=10 and l=15
+then 10^10=0;
+     10^11=1
+     10^12=6
+     10^13=7
+     10^14=4
+     10^15=5
+     similarily for rest
