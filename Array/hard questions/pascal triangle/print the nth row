@@ -1,0 +1,12 @@
+  vector<ll>ans;
+        long long  int mod=1e9+7;
+        long long int v=1;
+        ans.push_back(v);
+        for(long long int i=1;i<n;i++)
+        {
+            v=v*(n-i);
+            v=v/i;
+            v=v%mod;
+            ans.push_back(v);
+        }
+        return ans;
