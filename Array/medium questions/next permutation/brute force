@@ -1,0 +1,6 @@
+ vector<int> nextPermutation(int n, vector<int> arr)
+    {
+        // code here
+        next_permutation(arr.begin(),arr.end());
+        return arr;
+    }
