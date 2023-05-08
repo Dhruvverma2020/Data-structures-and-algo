@@ -1,0 +1,26 @@
+ int lenOfLongSubarr(int a[],  int n, int k) 
+    { 
+        // Complete the function
+       map<int,int>presum;
+       int sum=0;
+       int maxlen=0;
+       for(int i=0;i<n;i++)
+       {
+           sum+=a[i];
+           if(sum==k)
+           {
+               maxlen=max(maxlen,i+1);
+           }
+           int rem=sum-k;
+           if(presum.find(rem)!=presum.end())
+           {
+               int len=i-presum[rem];
+               maxlen=max(len,maxlen);
+           }
+           if(presum.find(sum)==presum.end())
+           {
+             presum[sum]=i;
+           }
+       }
+       return maxlen;
+    } 
