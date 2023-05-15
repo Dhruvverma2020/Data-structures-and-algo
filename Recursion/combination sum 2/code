@@ -1,0 +1,29 @@
+void solve(int idx,vector<vector<int>>&ans,vector<int>&output,vector<int>&a,int n,int b)
+    {
+        if(b==0)
+        {
+            ans.push_back(output);
+            return;
+        }
+        for(int i=idx;i<n-1;i++)
+        {
+            if(i>idx&&a[i]==a[i-1])//check karney ke liye ki duplicate to nahi
+            continue;
+            if(a[i]>b)
+            break;
+            
+            output.push_back(a[i]);
+            solve(i+1,ans,output,a,n,b-a[i]);
+            output.pop_back();
+        }
+    }
+    vector<vector<int>> combinationSum2(vector<int> &a, int b)
+    {
+        // Write your code here
+        sort(a.begin(),a.end());
+        int n=a.size();
+        vector<vector<int>>ans;
+        vector<int>output;
+        solve(0,ans,output,a,n,b);
+        return ans;
+    }
