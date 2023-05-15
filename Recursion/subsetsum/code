@@ -1,0 +1,22 @@
+ void solve(int idx,vector<int>&ans,vector<int>&a,int sum,int n)
+    {
+        if(idx==n)
+        {
+            ans.push_back(sum);
+            return;
+        }
+        //element choose kar rahey hai
+        solve(idx+1,ans,a,sum+a[idx],n);
+        
+        //element choose nahi kar rahey hai
+         solve(idx+1,ans,a,sum,n);
+        
+    }
+    vector<int> subsetSums(vector<int> a, int n)
+    {
+        // Write Your Code here
+        vector<int>ans;
+        int sum=0;
+        solve(0,ans,a,sum,n);
+        return ans;
+    }
