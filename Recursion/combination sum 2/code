@@ -5,7 +5,7 @@ void solve(int idx,vector<vector<int>>&ans,vector<int>&output,vector<int>&a,int 
             ans.push_back(output);
             return;
         }
-        for(int i=idx;i<n-1;i++)
+        for(int i=idx;i<n;i++)
         {
             if(i>idx&&a[i]==a[i-1])//check karney ke liye ki duplicate to nahi
             continue;
