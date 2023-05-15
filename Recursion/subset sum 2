@@ -1,0 +1,22 @@
+ void solve(int idx,vector<vector<int>>&ans,vector<int>&ds,vector<int>& a,int n)
+    {
+        ans.push_back(ds);
+        for(int i=idx;i<n;i++)
+        {
+            if(i!=idx&&a[i]==a[i-1])
+            continue;
+            ds.push_back(a[i]);
+            solve(i+1,ans,ds,a,n);
+            ds.pop_back();
+        }
+        return;
+    }
+    vector<vector<int>> printUniqueSubsets(vector<int>& a) 
+    {
+        int n=a.size();
+        vector<vector<int>>ans;
+        vector<int>ds;
+        sort(a.begin(),a.end());
+        solve(0,ans,ds,a,n);
+        return ans;
+    }
