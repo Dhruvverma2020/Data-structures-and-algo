@@ -1,0 +1,32 @@
+ void solve(vector<vector<int>>&ans,vector<int>&ds,int idx,int b,int n,vector<int> &a)
+    {
+        if(idx==n)
+        {
+            if(b==0)
+            {
+                ans.push_back(ds);
+            }
+            return;
+        }
+       // if(idx>n)
+       // return;
+        //agar hum choose kartey hai
+        if(a[idx]<=b)
+        {
+            ds.push_back(a[idx]);
+            solve(ans,ds,idx,b-a[idx],n,a);
+            ds.pop_back();
+        }
+        //agar choose nahi kartey hai
+         solve(ans,ds,idx+1,b,n,a);
+    }
+    vector<vector<int> > combinationSum(vector<int> &a, int b)
+    {
+        vector<vector<int>>ans;
+        sort(a.begin(),a.end());
+        a.erase(unique(a.begin(), a.end()), a.end());
+        vector<int>ds;
+        int n=a.size();
+        solve(ans,ds,0,b,n,a);
+        return ans;
+    }
