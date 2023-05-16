@@ -1,0 +1,24 @@
+void solve(string output,int open,int close,vector<string>&ans,int n)
+    {
+        if(output.length()==2*n)
+        {
+            ans.push_back(output);
+            return;
+        }
+        if(open<n)
+        {
+            solve(output+"(",open+1,close,ans,n);
+        }
+        if(close<open)
+        {
+            solve(output+")",open,close+1,ans,n);
+        }
+        
+    }
+    vector<string> AllParenthesis(int n) 
+    {
+        // Your code goes here 
+        vector<string>ans;
+        solve("(",1,0,ans,n);
+        return ans;
+    }
