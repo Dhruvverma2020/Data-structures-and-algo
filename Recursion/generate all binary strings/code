@@ -1,0 +1,23 @@
+void solve(int num,string output,int ind)
+    {
+        if(num==ind)
+        {
+            cout<<output<<" ";
+            return;
+        }
+        if(ind!=0&&output[ind-1]=='1')
+        {
+            solve(num,output+'0',ind+1);
+        }
+        else
+        {
+            solve(num,output+'0',ind+1);
+            solve(num,output+'1',ind+1);
+        }
+    }
+    void generateBinaryStrings(int num)
+    {
+        //Write your code
+       solve(num,"",0);
+       return ;
+    }
