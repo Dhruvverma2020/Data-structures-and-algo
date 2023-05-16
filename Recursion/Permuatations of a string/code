@@ -1,0 +1,35 @@
+ void solve(vector<string>&ans,string &d,string &s,int freq[],int n)
+	    {
+	        if(d.size()==n)
+	        {
+	            ans.push_back(d);
+	            return;
+	        }
+	        for(int i=0;i<n;i++)
+	        {
+	            if( i != 0  and s[i-1] == s[i] and !freq[i-1])continue;
+	            if(!freq[i])
+	            {
+	                d+=s[i];
+	                freq[i]=1;
+	                solve(ans,d,s,freq,n);
+	                freq[i]=0;
+	                d.pop_back();
+	            }
+	        }
+	    }
+		vector<string>find_permutation(string s)
+		{
+		    // Code here there
+		    int n=s.length();
+		    vector<string>ans;
+		    string d="";
+		    int freq[n];
+		    for(int i=0;i<n;i++)
+		    {
+		        freq[i]=0;
+		    }
+		    solve(ans,d,s,freq,n);
+		    sort(ans.begin(),ans.end());
+		    return ans;
+		}
