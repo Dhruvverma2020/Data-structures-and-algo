@@ -1,0 +1,24 @@
+int f(int idx,vector<int>&dp,vector<int>&h,int n,int k)
+    {
+        dp[0]=0;
+        for(int i=1;i<n;i++)
+        {
+            int minsteps=INT_MAX;
+            for(int j=1;j<=k;j++)
+            {
+                if(i-j>=0)
+                {
+                    int jump=dp[i-j]+abs(h[i]-h[i-j]);
+                    minsteps=min(minsteps,jump);
+                }
+            }
+            dp[i]=minsteps;
+        }
+        return dp[n-1];
+    }
+    int minimizeCost(vector<int>& height, int n, int k) 
+    {
+        // Code here
+        vector<int>dp(n+1,-1);
+        return f(0,dp,height,n,k);
+    }
