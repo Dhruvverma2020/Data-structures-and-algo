@@ -1,0 +1,24 @@
+int f(int idx,vector<int>&dp,int *arr,int n)
+	{
+	    if(idx==0)
+	    {
+	        return arr[idx];
+	    }
+	    if(idx<0)
+	    {
+	        return 0;
+	    }
+	    if(dp[idx]!=-1)
+	    {
+	        return dp[idx];
+	    }
+	    int pick=arr[idx]+f(idx-2,dp,arr,n);
+	    int nonpick=f(idx-1,dp,arr,n);
+	    return dp[idx]=max(pick,nonpick);
+	}
+	int findMaxSum(int *arr, int n) 
+	{
+	    // code here
+	    vector<int>dp(n,-1);
+	    return f(n-1,dp,arr,n);
+	}
