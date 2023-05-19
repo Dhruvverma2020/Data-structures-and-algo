@@ -1,0 +1,37 @@
+ort(range.begin(),range.end());
+       vector<vector<int>>ans;
+       ans.push_back(range[0]);
+       for(int i=1;i<n;++i){
+           if(range[i][0]>ans.back()[1]){
+               ans.push_back(range[i]);
+           }
+           else{
+            ans.back()[1] = max(ans.back()[1],range[i][1]);
+           }
+       }
+       n = ans.size();
+       vector<int>A(n,0);
+       for(int i=0;i<n;++i){
+           A[i] = ans[i][1]-ans[i][0]+1;
+       }
+       vector<int>c;
+       for(int i=0;i<q;++i){
+           int k = queries[i];
+           int sum = 0;
+           int done = 0;
+           for(int j=0;j<n;++j){
+               sum = sum + A[j];
+               if(sum>=k){
+                   sum = sum-A[j];
+                   int pre = ans[j][0];
+                   k = k-sum;
+                   c.push_back(pre+k-1);
+                   done = 1;
+                   break;
+               }
+           }
+           if(done!=1){
+               c.push_back(-1);
+           }
+       }
+       return c;
