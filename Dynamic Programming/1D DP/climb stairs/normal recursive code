@@ -1,0 +1,14 @@
+int f(int n)
+    {
+        if(n<=1)
+        {
+            return 1;
+        }
+        int left=f(n-1);
+        int right=f(n-2);
+        return left+right;
+    }
+    int climbStairs(int n) 
+    {
+        return f(n);
+    }
