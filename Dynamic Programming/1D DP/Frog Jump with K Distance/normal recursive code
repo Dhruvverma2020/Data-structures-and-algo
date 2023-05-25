@@ -1,0 +1,22 @@
+int solve(int idx,vector<int>&height,int n,int k)
+    {
+        if(idx==0)
+        {
+            return 0;
+        }
+        int minsteps=INT_MAX;
+        for(int i=1;i<=k;i++)
+        {
+            if((idx-i)>=0)
+            {
+                int jump=solve(idx-i,height,n,k)+abs(height[idx]-height[idx-i]);
+                minsteps=min(minsteps,jump);
+            }
+        }
+        return minsteps;
+    }
+    int minimizeCost(vector<int>& height, int n, int k) 
+    {
+        // Code here
+        return solve(n-1,height,n,k);
+    }
