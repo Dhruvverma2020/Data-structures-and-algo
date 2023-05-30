@@ -1,0 +1,21 @@
+ int solve(int i,int prev,int a[],int n)
+    {
+        if(i==n)
+        {
+            return 0;
+        }
+        int len=0+solve(i+1,prev,a,n);
+        int take =0;
+        if(prev==-1||a[i]>a[prev])
+        {
+         take=1+solve(i+1,i,a,n);
+        }
+        len=max(len,take);
+        return len;
+    }
+    int longestSubsequence(int n, int a[])
+    {
+       // your code here
+       int prev=-1;
+       return solve(0,-1,a,n);
+    }
