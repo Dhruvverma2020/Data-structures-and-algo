@@ -1,0 +1,29 @@
+int f(int i,int k,vector<int>&nums,vector<int>&dp)
+    {
+        int n=nums.size();
+        if(i==n)
+        {
+            return 0;
+        }
+        if(dp[i]!=-1)
+        {
+         return dp[i];   
+        }
+        int len=0;
+        int maxi=INT_MIN;
+        int maxans=INT_MIN;
+        for(int j=i;j<min(n,i+k);j++)
+        {
+            len++;
+            maxi=max(maxi,nums[j]);
+            int sum=(len*maxi)+f(j+1,k,nums,dp);
+            maxans=max(maxans,sum);
+        }
+        return dp[i]=maxans;
+    }
+    int solve(int n, int k, vector<int>& nums)
+    {
+        // Code here
+        vector<int>dp(n+1,-1);
+        return f(0,k,nums,dp);
+    }
