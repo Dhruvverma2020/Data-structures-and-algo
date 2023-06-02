@@ -1,0 +1,43 @@
+double MedianOfArrays(vector<int>& a1, vector<int>& a2)
+    {
+        // Your code goes here
+       int n=a1.size();
+       int m=a2.size();
+       vector<int>x(n+m);
+       int i=0;
+       int j=0;
+       int k=0;
+       while(i<n&&j<m)
+       {
+           if(a1[i]<a2[j])
+           {
+               x[k]=a1[i];
+               i++;
+               k++;
+           }
+           else 
+           {
+               x[k]=a2[j];
+               j++;
+               k++;
+           }
+       }
+        while(i<n)
+        {
+            x[k]= a1[i];
+            i++;
+            k++;
+        }
+        while(j<m)
+        {
+            x[k]= a2[j];
+            k++;
+            j++;
+        }
+        int sz=x.size();
+        if(sz%2==0)
+        {
+            return (x[sz/2 -1]+x[(sz+2)/2 -1])/2.0;
+        }
+        return x[(sz+1)/2 -1];
+    }
