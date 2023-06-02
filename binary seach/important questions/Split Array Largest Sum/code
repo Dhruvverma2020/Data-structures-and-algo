@@ -1,0 +1,39 @@
+bool isvalid(vector<int>nums,int n,int max,int k){
+    int student=1;
+    int sum=0;
+    for(int i=0;i<n;i++){
+        sum+=nums[i];
+        if(sum>max){
+            sum=nums[i];
+            student++;
+        }
+    }
+    if(student>k){
+        return false;
+    }
+        return true;
+    
+}
+    int splitArray(vector<int>& nums, int k) {
+        int start=-999999;
+int end=0;
+int res =-1;
+int n = nums.size();
+if(n<k){
+    return -1;
+}
+for(int i=0;i<nums.size();i++){
+  start=max(start,nums[i]);
+  end+=nums[i];
+}
+while(start<=end){
+    int mid = start+(end-start)/2;
+    if(isvalid(nums,n,mid,k)==true){
+        res=mid;
+        end=mid-1;
+    }else{
+        start=mid+1;
+    }
+}
+return res;
+    }
