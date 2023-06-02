@@ -1,0 +1,54 @@
+bool isvalid(int a[],int n,int m,int mid)
+    {
+        int student=1;
+        int sum=0;
+        for(int i=0;i<n;i++)
+        {
+            if(a[i]>mid)
+            {
+                return false;
+            }
+            sum=sum+a[i];
+            if(sum>mid)
+            {
+                student++;
+                sum=a[i];
+            }
+        }
+        if(student>m)
+        {
+            return false;
+        }
+        return true;
+    }
+    int findPages(int a[], int n, int m) 
+    {
+        //code here
+        if(m>n)
+        {
+            return -1;
+        }
+        int start=0;
+        int sum=0;
+        for(int i=0;i<n;i++)
+        {
+            sum=sum+a[i];
+            start=max(start,a[i]);
+        }
+        int res=-1;
+        int end=sum;
+        while(start<=end)
+        {
+            int mid=start+(end-start)/2;
+            if(isvalid(a,n,m,mid)==true)
+            {
+                res=mid;
+                end=mid-1;
+            }
+            else
+            {
+                start=mid+1;
+            }
+        }
+        return res;
+    }
