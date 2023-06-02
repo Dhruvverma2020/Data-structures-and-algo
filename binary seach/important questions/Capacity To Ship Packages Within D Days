@@ -1,0 +1,47 @@
+bool isvalid(int arr[],int n,int d,int mid)
+    {
+        int days=1;
+        int sum=0;
+        for(int i=0;i<n;i++)
+        {
+            sum=sum+arr[i];
+            if(sum>mid)
+            {
+                days++;
+                sum=arr[i];
+            }
+        }
+        if(days>d)
+        {
+            return false;
+        }
+        return true;
+    }
+    int leastWeightCapacity(int arr[], int n, int d) 
+    {
+        // code here
+        int maxi=0;
+        int sum=0;
+        for(int i=0;i<n;i++)
+        {
+            sum=sum+arr[i];
+            maxi=max(maxi,arr[i]);
+        }
+        int l=maxi;
+        int r=sum;
+        int res=0;
+        while(l<=r)
+        {
+            int mid=l+(r-l)/2;
+            if(isvalid(arr,n,d,mid))
+            {
+                res=mid;
+                r=mid-1;
+            }
+            else
+            {
+                l=mid+1;
+            }
+        }
+        return res;
+    }
