@@ -1,0 +1,8 @@
+void print(node*root)
+{
+    if(root!=NULL)
+    {
+        cout<<root->key<<" ";
+        print(root->left);
+        print(root->right);
+    }
