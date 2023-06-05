@@ -1,0 +1,22 @@
+ int getheight(Node*root)
+    {
+        if(root==NULL)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1+max(getheight(root->left),getheight(root->right));
+        }
+    }
+    bool isBalanced(Node *root)
+    {
+        //  Your Code here
+        if(root==NULL)
+        {
+            return true;
+        }
+        int lh=getheight(root->left);
+        int rh=getheight(root->right);
+        return (abs(lh-rh)<=1&&isBalanced(root->left)&&isBalanced(root->right));
+    }
