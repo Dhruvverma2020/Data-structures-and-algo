@@ -1,0 +1,9 @@
+void inorder(node*root)
+{
+    if(root!=NULL)
+    {
+        print(root->left);
+        cout<<root->key<<" ";
+        print(root->right);
+    }
+}
