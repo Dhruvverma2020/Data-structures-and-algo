@@ -1,0 +1,4 @@
+In a binary search tree the inorder traversal of the tree gives an sorted array.
+All keys are typically considered distinct.
+for every node keys in the left side are smaller and keys in the right are larger than the root node.
+It is implemented in c++ as map,set,multimap.
