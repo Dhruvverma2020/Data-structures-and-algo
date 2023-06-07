@@ -1,0 +1,20 @@
+ void preorder(Node*root,vector<int>&v)
+    {
+        if(root!=NULL)
+        {
+            v.push_back(root->val);
+            preorder(root->left,v);
+            preorder(root->right,v);
+        }
+    }
+    int countNodes(Node* root) 
+    {
+        // Write your code here
+        if(root==NULL)
+        {
+            return 0;
+        }
+        vector<int>v;
+        preorder(root,v);
+        return v.size();
+    }
