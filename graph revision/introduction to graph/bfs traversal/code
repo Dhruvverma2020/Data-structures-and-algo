@@ -1,0 +1,28 @@
+void bfsrec(vector<int>adj[],int s,vector<bool>&vis,vector<int>&ans)
+    {
+        queue<int>q;
+        vis[s]=true;
+        q.push(s);
+        while(q.empty()==false)
+        {
+            int u=q.front();
+            q.pop();
+            ans.push_back(u);
+            for(auto x:adj[u])
+            {
+                if(vis[x]==false)
+                {
+                    vis[x]=true;
+                    q.push(x);
+                }
+            }
+        }
+    }
+    vector<int> bfsOfGraph(int v, vector<int> adj[]) 
+    {
+        // Code here
+        vector<bool>vis(v+1,false);
+        vector<int>ans;
+        bfsrec(adj,0,vis,ans);
+        return ans;
+    }
