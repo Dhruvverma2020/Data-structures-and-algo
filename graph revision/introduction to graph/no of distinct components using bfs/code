@@ -1,0 +1,50 @@
+class Solution {
+public:
+    void dfsrec(vector<int>adj[],int s,vector<bool>&vis)
+    {
+        queue<int>q;
+        vis[s]=true;
+        q.push(s);
+        while(q.empty()==false)
+        {
+            int u=q.front();
+            q.pop();
+            for(auto x:adj[u])
+            {
+                if(vis[x]==false)
+                {
+                    vis[x]=true;
+                    q.push(x);
+                }
+            }
+        }
+    }
+    int findCircleNum(vector<vector<int>>& matrix) 
+    {
+      int n=matrix.size();
+      int m=matrix[0].size();
+      vector<int>adj[n];
+       for(int i=0;i<n;i++)
+       {
+           for(int j=0;j<n;j++)
+           {
+               if(matrix[i][j]==1&&i!=j)
+               {
+                   adj[i].push_back(j);
+                   adj[j].push_back(i);
+               }
+           }
+       }  
+       vector<bool>vis(n+1,false);
+       int count=0;
+       for(int i=0;i<n;i++)
+       {
+           if(vis[i]==false)
+             {
+                count++;
+                dfsrec(adj,i,vis);
+             }
+       }
+       return count;
+    }
+};
