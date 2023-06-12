@@ -1,0 +1,35 @@
+ bool dfsrec(vector<int>adj[],int s,vector<bool>&vis,int parent)
+    {
+        vis[s]=true;
+        for(auto x:adj[s])
+        {
+            if(vis[x]==false)
+            {
+                if(dfsrec(adj,x,vis,s))
+                {
+                    return true;
+                }
+            }
+            else if(x!=parent)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    bool isCycle(int v, vector<int> adj[])
+    {
+        // Code here
+        vector<bool>vis(v+1,false);
+        for(int i=0;i<v;i++)
+        {
+            if(vis[i]==false)
+            {
+                if(dfsrec(adj,i,vis,-1))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
