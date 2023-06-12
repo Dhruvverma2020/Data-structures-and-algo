@@ -1,0 +1,38 @@
+ bool dfsrec(vector<int>adj[],int s,vector<bool>&visited,vector<bool>&rst)
+    {
+        visited[s]=true;
+        rst[s]=true;
+        for(int x:adj[s])
+        {
+            if(visited[x]==false)
+            {
+                if(dfsrec(adj,x,visited,rst))
+                {
+                    return true;
+                }
+            }
+            else if(rst[x]==true)
+            {
+                return true;
+            }
+        }
+        rst[s]=false;
+        return false;
+    }
+    bool isCyclic(int v, vector<int> adj[]) 
+    {
+        // code here
+        vector<bool>visited(v+1,false);
+        vector<bool>rst(v+1,false);
+        for(int i=0;i<v;i++)
+        {
+            if(visited[i]==false)
+            {
+                if(dfsrec(adj,i,visited,rst))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
