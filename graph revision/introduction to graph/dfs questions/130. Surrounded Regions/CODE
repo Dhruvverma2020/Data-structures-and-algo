@@ -1,0 +1,78 @@
+void convert(int n,int m,vector<vector<char>>&mat)
+    {
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(mat[i][j]=='B')
+                {
+                    mat[i][j]='O';
+                }
+                else if(mat[i][j]=='O')
+                {
+                    mat[i][j]='X';
+                }
+            }
+        }
+    }
+    bool isvalid(int i,int j,int n,int m,vector<vector<char>>&mat)
+    {
+        if(i>=0&&i<n&&j>=0&&j<m&&mat[i][j]=='O')
+        {
+            return true;
+        }
+        return false;
+    }
+    void dfsrec(int i,int j,int n,int m,vector<vector<char>>& mat)
+    {
+        mat[i][j]='B';
+        if(isvalid(i+1,j,n,m,mat))
+        {
+            dfsrec(i+1,j,n,m,mat);
+        }
+        if(isvalid(i-1,j,n,m,mat))
+        {
+            dfsrec(i-1,j,n,m,mat);
+        }
+        if(isvalid(i,j+1,n,m,mat))
+        {
+            dfsrec(i,j+1,n,m,mat);
+        }
+        if(isvalid(i,j-1,n,m,mat))
+        {
+            dfsrec(i,j-1,n,m,mat);
+        }
+    }
+    void solve(vector<vector<char>>& mat) 
+    {
+        int n=mat.size();
+        int m=mat[0].size();
+        for(int i=0;i<n;i++)
+        {
+            int j=0;
+            if(mat[i][j]=='O')
+            {
+                dfsrec(i,j,n,m,mat);
+            }
+            j=m-1;
+            if(mat[i][j]=='O')
+            {
+                dfsrec(i,j,n,m,mat);
+            }
+        }
+        for(int j=0;j<m;j++)
+        {
+            int i=0;
+            if(mat[i][j]=='O')
+            {
+                dfsrec(i,j,n,m,mat);
+            }
+            i=n-1;
+            if(mat[i][j]=='O')
+            {
+                dfsrec(i,j,n,m,mat);
+            }
+        }
+        convert(n,m,mat);
+        
+    }
