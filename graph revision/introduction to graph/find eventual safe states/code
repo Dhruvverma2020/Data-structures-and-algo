@@ -1,0 +1,43 @@
+ bool dfsrec(vector<int>adj[],int s,vector<bool>&vis,vector<bool>&rst,vector<bool>&prev)
+    {
+        vis[s]=true;
+        rst[s]=true;
+        for(auto x:adj[s])
+        {
+            if(vis[x]==false)
+            {
+                if(dfsrec(adj,x,vis,rst,prev))
+                {
+                    return prev[s]=true;
+                }
+            }
+            else if(rst[x]==true)
+            {
+                return prev[s]=true;
+            }
+        }
+        rst[s]=false;
+        return false;
+    }
+    vector<int> eventualSafeNodes(int v, vector<int> adj[])
+    {
+       vector<int>ans;
+       vector<bool>vis(v,false);
+       vector<bool>rst(v,false);
+       vector<bool>prev(v,false);
+       for(int i=0;i<v;i++)
+       {
+           if(vis[i]==false)
+           {
+               dfsrec(adj,i,vis,rst,prev);
+           }
+       }
+       for(int i=0;i<v;i++)
+          {
+              if(!prev[i])
+              {
+                  ans.push_back(i);
+              }
+          }
+          return ans;
+    }
