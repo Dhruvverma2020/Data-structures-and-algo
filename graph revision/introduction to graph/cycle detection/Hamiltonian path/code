@@ -1,0 +1,49 @@
+//
+Main logic is that check weather it has lopp or not and if yes then count no of elements in the loop if the no of elements in the loop is equal to n then print yes
+bool dfsrec(vector<int>adj[],int s,vector<int>&vis,int count,int n)
+    {
+        vis[s]=1;
+        count++;
+        if(count==n)
+        {
+            return true;
+        }
+        for(auto it:adj[s])
+        {
+            if(!vis[it])
+            {
+                if(dfsrec(adj,it,vis,count,n))
+                {
+                    return true;
+                }
+            }
+        }
+        count--;
+        vis[s]=false;
+        return false;
+    }
+    bool check(int n,int m,vector<vector<int>> edges)
+    {
+        // code here
+        vector<int>adj[n+1];
+        for(int i=0;i<m;i++)
+        {
+            int u=edges[i][0];
+            int v=edges[i][1];
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+       
+        vector<int>vis(n+1,0);
+        for(int i=1;i<n+1;i++)
+        {
+          if(vis[i]==0)
+          {
+              if(dfsrec(adj,i,vis,0,n))
+              {
+                  return true;
+              }
+          }
+        }
+        return false;
+    }
