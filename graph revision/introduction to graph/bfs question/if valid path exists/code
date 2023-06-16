@@ -1,4 +1,4 @@
-The main logic of this question is that first we have to convert the edhes into the adjacency list now do bfs traversal to see which vertex is connected to which other one and then check wether vis[destination 
+The main logic of this question is that first we have to convert the edges into the adjacency list now do bfs traversal to see which vertex is connected to which other one and then check wether vis[destination 
 is true or not
 class Solution {
 public:
