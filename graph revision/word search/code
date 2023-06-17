@@ -1,0 +1,49 @@
+bool dfsrec(int i, int j,int idx,int dr[],int dc[],vector<vector<char>>&board, string word,vector<vector<int>>&vis)
+    {
+        if(idx==word.length())
+        {
+            return true;
+        }
+        vis[i][j]=1;
+        int n=board.size();
+        int m=board[0].size();
+        for(int k=0;k<4;k++)
+        {
+            int nr=i+dr[k];
+            int nc=j+dc[k];
+            if(nr>=0&&nr<n&&nc>=0&&nc<m&&vis[nr][nc]==0&&board[nr][nc]==word[idx])
+            {
+                vis[nr][nc]=1;
+                if(dfsrec(nr,nc,idx+1,dr,dc,board,word,vis))
+	                {
+	                    return true;
+	                }
+            }
+        }
+        vis[i][j]=0;
+        return false;
+    }
+    bool isWordExist(vector<vector<char>>& board, string word) 
+    {
+        // Code here
+        int n=board.size();
+        int m=board[0].size();
+        int dr[]={-1,0,1,0};
+        int dc[]={0,1,0,-1};
+        int idx=0;
+        vector<vector<int>>vis(n,vector<int>(m,0));
+	    for(int i=0;i<n;i++)
+	    {
+	        for(int j=0;j<m;j++)
+	        {
+	            if(board[i][j]==word[idx])
+	            {
+	                if(dfsrec(i,j,idx+1,dr,dc,board,word,vis))
+	                {
+	                    return true;
+	                }
+	            }
+	        }
+	    }
+	    return false;
+    }
