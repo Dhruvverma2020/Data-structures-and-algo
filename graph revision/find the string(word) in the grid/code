@@ -1,0 +1,39 @@
+ bool dfsrec(int i, int j,int d1, int d2, vector<vector<char>> &grid, string &word, int indx)
+    {
+        if(indx==word.size())
+        {
+            return true;
+        }
+        if(i<0||j<0||i>=grid.size()||j>=grid[0].size()||grid[i][j]!=word[indx])
+        {
+            return false;
+        }
+        return dfsrec(i+d1,j+d2,d1,d2,grid,word,indx+1);
+    }
+	vector<vector<int>>searchWord(vector<vector<char>>grid, string word)
+	{
+	    // Code here
+	    vector<vector<int>>ans;
+	    int dr[]= {0,-1,-1,-1,0,1,1,1};
+        int dc[]= {-1,-1,0,1,1,1,0,-1};
+	    int n=grid.size();
+	    int m=grid[0].size();
+	    for(int i=0;i<n;i++)
+	    {
+	        for(int j=0;j<m;j++)
+	        {
+	            if(grid[i][j]==word[0])
+	            {
+	                for(int k=0;k<8;k++)
+	                {
+	                    if(dfsrec(i,j,dr[k],dc[k],grid,word,0))
+	                    {
+	                        ans.push_back({i,j});
+	                        break;
+	                    }
+	                }
+	            }
+	        }
+	    }
+	    return ans;
+	}
