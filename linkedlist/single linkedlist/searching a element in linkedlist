@@ -1,0 +1,17 @@
+if(head==NULL)
+        {
+            return false;
+        }
+        Node*curr=head;
+        while(curr!=NULL)
+        {
+            if(curr->data==key)
+            {
+                return true;
+            }
+            else
+            {
+                curr=curr->next;
+            }
+        }
+        return false;
