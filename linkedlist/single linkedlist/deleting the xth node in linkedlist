@@ -1,0 +1,21 @@
+Node* deleteNode(Node *head,int x)
+{
+    //Your code here
+    Node*curr=head;
+    if(x==1)
+    {
+        head=head->next;
+        return head;
+    }
+  Node*temp=head;
+  Node*prev=NULL;
+  int count=x-1;
+  for(int i=0;i<count;i++)
+  {
+      prev=temp;
+      temp=temp->next;
+  }
+  prev->next=temp->next;
+  temp->next=NULL;
+  return head;
+}
