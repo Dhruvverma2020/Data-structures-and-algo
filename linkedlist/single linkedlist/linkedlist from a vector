@@ -1,0 +1,18 @@
+  Node* constructLL(vector<int>& arr) 
+    {
+        // code here
+        int n=arr.size();
+        Node*head=new Node(arr[0]);
+        if(n==1)
+        {
+            return head;
+        }
+        Node*curr=head;
+        for(int i=1;i<n;i++)
+        {
+            Node*temp=new Node(arr[i]);
+            curr->next=temp;
+            curr=curr->next;
+        }
+        return head;
+    }
