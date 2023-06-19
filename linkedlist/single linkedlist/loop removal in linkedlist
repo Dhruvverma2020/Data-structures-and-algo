@@ -1,0 +1,44 @@
+ void removeLoop(Node* head)
+    {
+        // code here
+        // just remove the loop without losing any nodes
+        
+        Node* slow = head, *fast = head;
+        
+        while(fast != NULL && fast->next != NULL)
+        {
+            fast = fast->next->next;
+            slow = slow->next;
+            
+            if(slow == fast)
+                break;
+            
+        }
+        
+        if(slow != fast)
+            return;
+        
+            
+        slow = head;
+        
+        
+        // this if block is for the case when the list is complete cycle
+        // noticed that slow and fast are becoming head after moving slow to head
+        if(slow == fast)
+        {
+            while(fast->next != slow)
+            {
+                fast = fast->next;
+            }
+            fast->next = NULL;
+            return;
+        }
+        
+        while(slow->next != fast->next)
+        {
+            slow = slow->next;
+            fast = fast->next;
+        }
+        
+        fast->next = NULL;
+    }
