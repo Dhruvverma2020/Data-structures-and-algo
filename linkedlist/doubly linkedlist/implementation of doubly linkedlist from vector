@@ -1,0 +1,21 @@
+Node* constructDLL(vector<int>& arr) 
+    {
+        // code here
+        int n=arr.size();
+        Node*head=new Node(arr[0]);
+        if(n==1)
+        {
+            return head;
+        }
+        Node*curr=head;
+        int i=1;
+        while(curr!=NULL&&i<n)
+        {
+            Node*temp=new Node(arr[i]);
+            i++;
+            curr->next=temp;
+            temp->prev=curr;
+            curr=temp;
+        }
+        return head;
+    }
