@@ -1,0 +1,45 @@
+vector<int> findAnagrams(string s, string p) {
+        vector<int>ans;
+        int k = p.size();
+        unordered_map<char,int> mp;
+        
+        // storing the occurence of string p in map
+        for(int i=0; i<p.size(); i++)
+            mp[p[i]]++;
+        
+        int count = mp.size();   //or anagramsCount
+        int i=0, j=0;
+        
+        while(j<s.size()) {
+            // calculation part
+            if(mp.find(s[j]) != mp.end()) {
+                mp[s[j]]--;
+                if(mp[s[j]] == 0)
+                count--;
+                
+            }
+            
+            // window length not achived
+            if(j-i+1 < k){
+                j++;
+            }
+            // window length achieved
+            else if(j-i+1 == k) {
+                
+                if(count == 0)
+                    ans.push_back(i);
+                
+                // exclude the ith char
+                // i++ krne se phele usko remove krna h uski condition
+                if(mp.find(s[i]) != mp.end()) {
+                    mp[s[i]]++;
+                    if(mp[s[i]] ==1)
+                    count++;
+                }
+                j++;
+                i++;
+            }
+        }
+        return ans;
+        
+    }
