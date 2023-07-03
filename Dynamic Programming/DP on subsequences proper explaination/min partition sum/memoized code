@@ -1,0 +1,39 @@
+bool f(vector<int>&arr,int idx,int sem,vector<vector<int>>&dp)
+{
+	if(sem==0)
+	{
+		return 1;
+	}
+	if(idx<1)
+	{
+		return 0;
+	}
+	if(dp[idx][sem]!=-1)
+	{
+		return dp[idx][sem];
+	}
+	if(arr[idx-1]>sem)
+        {
+            return dp[idx][sem]=f(arr,idx-1,sem,dp);
+        }
+        else if(arr[idx-1]<=sem)
+        {
+            return dp[idx][sem]=f(arr,idx-1,sem-arr[idx-1],dp)||f(arr,idx-1,sem,dp);
+        }
+}
+bool canPartition(vector<int> &arr, int n)
+{
+	// Write your code here.
+	int sum=0;
+	for(int i=0;i<n;i++)
+	{
+		sum=sum+arr[i];
+	}
+	if(sum%2!=0)
+	{
+		return false;
+	}
+	int sem=sum/2;
+	vector<vector<int>>dp(n+1,vector<int>(sem+1,-1));
+	return f(arr,n,sem,dp);
+}
