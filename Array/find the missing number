@@ -1,0 +1,10 @@
+int missingNumber(vector<int>& arr, int n)
+    {
+        // Your code goes here
+        int msum=(n*(n+1))/2;
+        for(int i=0;i<n-1;i++)
+        {
+            msum=msum-arr[i];
+        }
+        return msum;
+    }
