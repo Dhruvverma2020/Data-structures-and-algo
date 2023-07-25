@@ -1,0 +1,62 @@
+int maximum(vector<int>&arr)
+   {
+      int maxi=INT_MIN;
+      int n=arr.size();
+      for(int i=0;i<n;i++)
+      {
+          if(maxi<arr[i])
+          {
+              maxi=arr[i];
+          }
+      }
+      return maxi;
+   }
+    int f(vector<int>&arr,int d,int mid)
+  {
+      int day=1;
+      int load=0;
+      int n=arr.size();
+      for(int i=0;i<n;i++)
+      {
+          if(load+arr[i]>mid)
+          {
+              day=day+1;
+              load=arr[i];
+          }
+          else
+          {
+              load=load+arr[i];
+          }
+      }
+      return day;
+  }
+  int summ(vector<int>&arr)
+  {
+      int sum=0;
+      int n=arr.size();
+      for(int i=0;i<n;i++)
+      {
+          sum=sum+arr[i];
+      }
+      return sum;
+  }
+    int shipWithinDays(vector<int>& arr, int d) 
+    {
+        int l=maximum(arr);
+        int r=summ(arr);
+        while(l<=r)
+        {
+            int mid=(l+r)/2;
+            int nodays=f(arr,d,mid);
+            if(nodays<=d)
+            {
+                r=mid-1;
+            }
+            else
+            {
+                l=mid+1;
+            }
+        }
+        return l;
+    }
+};
