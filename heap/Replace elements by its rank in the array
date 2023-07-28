@@ -1,0 +1,21 @@
+ vector<int> arrayRankTransform(vector<int>& arr) 
+    {
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+        int count=1;
+        int n=arr.size();
+        for(int i=0;i<n;i++)
+        {
+            pq.push({arr[i],i});
+        }
+        while(pq.empty()==false)
+        {
+            arr[pq.top().second]=count;
+            int visited=pq.top().first;
+            pq.pop();
+            if(pq.empty()==false&&visited!=pq.top().first)
+            {
+                count++;
+            } 
+        }
+        return arr;
+    }
