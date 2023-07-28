@@ -1,0 +1,51 @@
+ bool isNStraightHand(vector<int>& hand, int k) 
+    {
+       int n=hand.size();
+       unordered_map<int,int> mp;
+       if(n%k!=0)
+       {
+           return false;
+       }
+       priority_queue<int,vector<int>,greater<int>>pq;
+       for(int i=0;i<n;i++)
+       {
+           mp[hand[i]]++;
+           pq.push(hand[i]);
+       }
+       while(pq.empty()==false)
+       {
+           if(mp.find(pq.top())==mp.end())
+           {
+                pq.pop();
+                continue;
+            }
+            int tp = pq.top();
+            pq.pop();
+            //cout<<tp<<endl;
+            if(mp.find(tp)!=mp.end())
+            {
+                for(int i=1;i<k;i++)
+                {
+                    if(mp.find(tp+i)==mp.end())
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        mp[tp+i]--;
+                        if(mp[tp+i]==0)
+                        {
+                            mp.erase(tp+i);
+                        }
+                    }
+                }
+            }
+            mp[tp]--;
+            if(mp[tp]==0)
+            {
+                mp.erase(tp);
+            }
+       }   
+       return true;
+    }
+};
