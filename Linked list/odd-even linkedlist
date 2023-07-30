@@ -1,0 +1,46 @@
+ ListNode* oddEvenList(ListNode* head) 
+    {     
+       ListNode *oddh = NULL, *evenh = NULL;
+       ListNode *oddt = NULL, *event = NULL;
+       int count = 1;
+        
+        while(head!=NULL){
+            if(count%2 == 0){
+                if(evenh==NULL){
+                    evenh = event = head;
+                    head = head->next;
+                }
+                else{
+                    event->next = head;
+                    event = event->next;
+                    head = head->next;
+                }
+            }
+            else{
+                 if(oddh==NULL){
+                    oddh = oddt = head;
+                    head = head->next;
+                }
+                else{
+                    oddt->next = head;
+                    oddt = oddt->next;
+                    head = head->next;
+                }
+            }
+            count++;
+        }
+
+        if(oddh==NULL){
+            return evenh;
+        }
+        
+        if(evenh==NULL){
+            return oddh;
+        }
+        
+        event->next =NULL;
+        oddt->next = evenh;
+
+        return oddh;
+    }
+};
