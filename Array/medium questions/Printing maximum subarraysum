@@ -1,0 +1,47 @@
+	vector<int> findSubarray(int a[], int n) 
+	{
+	    // code here
+	    vector<int>ans;
+	    int sum=0;
+	    int start=0;
+	    int ansstart=-1;
+	    int ansend=-1;
+	    int maxi=INT_MIN;
+	    for(int i=0;i<n;i++)
+	    {
+	        if(a[i]<0)
+	        {
+	            sum=0;
+	        }
+	        if(sum==0)
+	        {
+	            start=i;
+	        }
+	        sum=sum+a[i];
+	        if(sum==maxi)
+            {
+                int prevMax=ansend-ansstart;
+                int now=i-start;
+                if(now>prevMax)
+                {
+                    ansstart=start;
+                    ansend=i;
+                }
+            }
+	        if(sum>maxi)
+	        {
+	            maxi=sum;
+	            ansstart=start;
+	            ansend=i;
+	        }
+	        if(sum<0)
+	        {
+	            sum=0;
+	        }
+	    }
+	    for(int i=ansstart;i<=ansend;i++)
+	    {
+	        ans.push_back(a[i]);
+	    }
+	    return ans;
+	}
