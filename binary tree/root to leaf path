@@ -1,0 +1,12 @@
+bool hasPathSum(Node *root, int s) 
+    {
+      if(root==NULL)
+      {
+          return false;
+      }
+      if(s-root->data ==0&&root->left==NULL&&root->right==NULL)
+      {
+          return true;
+      }
+      return (hasPathSum(root->left,s-root->data)||hasPathSum(root->right,s-root->data));
+    }
